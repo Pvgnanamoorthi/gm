@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('demo.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            color: #33333387;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(131, 147, 210, 0.233) 0%, rgba(218, 208, 229, 0.277) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.686);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.713);
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            color: #3b598b;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #3b598b;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.561);
+            color: #4a5568;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 0.8rem;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+            justify-items: start;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.717);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.177);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #667eea91, #764ba291);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .project-image-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 15px;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            color: #273142;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .project-description {
+            color: #394253;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #667eeac5, #764ba2c1);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-button">← Back to Home</a>
+
+    <div class="container">
+        <div class="header">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: #3b598b; margin-bottom: 8px; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Unity Projects</h1>
+            <p style="font-family: 'Press Start 2P', cursive; font-size: 0.7rem; line-height: 1.4;">Explore my collection of Unity game development projects</p>
+        </div>
+
+        <style>
+            .zigzag-projects {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+            }
+            .zigzag-row {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 32px;
+                margin-bottom: 0;
+            }
+            .zigzag-row.reverse {
+                flex-direction: row-reverse;
+            }
+            .zigzag-project-image {
+                flex: 1 1 280px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 180px;
+                min-height: 180px;
+                max-width: 340px;
+                background: rgba(60, 90, 130, 0.14);
+                border-radius: 12px;
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0 3px 16px 0 rgba(40,90,230,0.07);
+            }
+            .zigzag-project-image img {
+                width: 100%;
+                height: 210px;
+                object-fit: cover;
+                border-radius: 12px;
+                display: block;
+            }
+            .zigzag-project-image-placeholder {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                color: #fffaf2;
+                width: 100%;
+                height: 210px;
+                background: linear-gradient(135deg, #667eea 20%, #764ba2 80%);
+                border-radius: 12px;
+                font-family: 'Orbitron', Arial, sans-serif;
+                font-weight: 600;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .zigzag-project-content {
+                flex: 2 1 0;
+                background: rgba(255,255,255,0.66);
+                padding: 32px 20px 28px 20px;
+                border-radius: 14px;
+                box-shadow: 0 2px 12px 0 rgba(80,80,130,0.04);
+                margin-left: 0;
+            }
+            .zigzag-row.reverse .zigzag-project-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            @media (max-width: 850px) {
+                .zigzag-row,
+                .zigzag-row.reverse {
+                    flex-direction: column;
+                    gap: 14px;
+                    align-items: flex-start;
+                }
+                .zigzag-project-image,
+                .zigzag-project-content {
+                    max-width: 100%;
+                    width: 100%;
+                }
+                .zigzag-project-content {
+                    padding: 18px 10px 18px 10px;
+                }
+            }
+        </style>
+        <div class="zigzag-projects">
+            <!-- Game 1: image left, content right -->
+            <div class="zigzag-row">
+                <div class="zigzag-project-image">
+                    <img src="PC version.png" alt="Game 1 Screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="zigzag-project-image-placeholder" style="display:none;">🎮 SITE SPRINT</div>
+                </div>
+                <div class="zigzag-project-content">
+                    <h3 class="project-title">SITE SPRINT</h3>
+                    <p class="project-description">
+                        Site Sprint is a fast-paced endless runner game developed in Unity, where players navigate through an ever-continuing 
+                        environment filled with obstacles. The objective is to survive as long as possible while avoiding collisions and 
+                        achieving the highest score. This project helped me understand core game development concepts like player movement, 
+                        collision handling, game mechanics, and UI integration, marking the start of my journey in game development.
+                    </p>
+                    <div class="project-actions">
+                        <a href="https://play.unity.com/en/games/3c551013-a406-4775-a5b2-8e453b296c40/webgl-builds" class="project-link">Play Game</a>
+                        <a href="https://drive.google.com/file/d/1FuXohlbBcXhlhKaTEAZVMUP7lB_jNsAN/view?usp=sharing" download class="project-link">APK Download</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Game 2: image right, content left -->
+            <div class="zigzag-row reverse">
+                <div class="zigzag-project-image">
+                    <img src="xo UI.jpeg" alt="Game 2 Screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="zigzag-project-image-placeholder" style="display:none;">🎮 XO CLASH</div>
+                </div>
+                <div class="zigzag-project-content">
+                    <h3 class="project-title">XO CLASH</h3>
+                    <p class="project-description">
+                        XO Clash is a classic Tic Tac Toe game developed in Unity, designed with smooth gameplay and an 
+                        interactive UI. Players take turns placing X and O on the grid, aiming to align three symbols in
+                        a row to win. This project strengthened my understanding of game logic, turn-based mechanics, 
+                        win-condition algorithms, and UI management, helping me improve my problem-solving skills in game 
+                        development.
+                    </p>
+                    <div class="project-actions">
+                        <a href="https://play.unity.com/en/games/2d29ab6c-07e3-421d-a284-9965c84493b1/xo-clash" class="project-link">Play Game</a>
+                        <a href="https://drive.google.com/file/d/16WpS-IkAfhtjOIrLWX0VPpYIqzC0fGTM/view?usp=sharing" download class="project-link">APK Download</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Game 3: image left, content right -->
+            <div class="zigzag-row">
+                <div class="zigzag-project-image">
+                    <img src="1.jpeg" alt="Game 1 Screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="zigzag-project-image-placeholder" style="display:none;">🎮 RAPID FIRE</div>
+                </div>
+                <div class="zigzag-project-content">
+                    <h3 class="project-title">RAPID FIRE</h3>
+                    <p class="project-description">
+                        Rapid Fire is a First-Person Shooter (FPS) game developed in Unity, focused on basic combat mechanics and immersive gameplay.
+                        Players engage in fast-paced shooting action with responsive controls and simple enemy interactions. 
+                        Through this project, I gained hands-on experience in FPS camera setup, shooting mechanics, enemy behavior, 
+                        animations, and basic AI implementation, marking an important step forward in my game development journey.
+                    </p>
+                    <div class="project-actions">
+                        <a href="https://play.unity.com/en/games/f8321020-a3b5-41ff-ac56-81705d01cd2d/rapid-fire" class="project-link">Play Game</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Game 4: image right, content left -->
+            <div class="zigzag-row reverse">
+                <div class="zigzag-project-image">
+                    <img src="forest drive.png" alt="Game 4 Screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="zigzag-project-image-placeholder" style="display:none;">🎮 Forest Drive</div>
+                </div>
+                <div class="zigzag-project-content">
+                    <h3 class="project-title">FOREST DRIVE</h3>
+                    <p class="project-description">
+                        This terrain-based driving project showcases my skills in terrain sculpting, environment design, 
+                        and realistic car physics using Unity. I created natural landscapes with optimized performance and 
+                        implemented smooth acceleration, steering, suspension, and drift mechanics, delivering an immersive and 
+                        polished off-road driving experience..
+                    </p>
+                    <div class="project-actions">
+                        <a href="https://play.unity.com/en/games/9fa63aa1-b27a-4b28-b89f-2942454c000a/webgl-builds" class="project-link">Play Game</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

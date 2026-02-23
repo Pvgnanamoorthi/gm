@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+            line-height: 1.4;
+            background-color: #2f2f2f66;
+            background-image: linear-gradient(rgba(26, 26, 26, 0.609), rgba(26, 26, 26, 0.691)), url('MainPage(BG).png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            scroll-behavior: smooth;
+            font-size: 12px;
+        }
+
+        .header {
+            background-color: rgba(51, 51, 51, 0.9);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            margin: 1.5rem auto;
+            max-width: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin: 0.8rem 0;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #4CAF50;
+        }
+
+        .projects-section {
+            padding: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .project-category h3 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .project-item {
+            background-color: rgba(249, 249, 249, 0.9);
+            padding: 0.8rem;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* Mobile Responsive Styles */
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 10px;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: center;
+                position: static !important;
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 0.7rem;
+                padding: 0.5rem;
+            }
+
+            .header img {
+                position: static !important;
+                transform: none !important;
+                width: 150px !important;
+                height: 150px !important;
+                margin: 1rem auto;
+                display: block;
+            }
+
+            .header div[style*="text-align: right"] {
+                text-align: center !important;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .flip-container {
+                height: 20px !important;
+            }
+
+            .flip-item h2 {
+                font-size: 1rem !important;
+            }
+
+            .about-section {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .about-section p {
+                padding: 0 1rem !important;
+            }
+
+            .project-categories {
+                padding: 0 1rem;
+            }
+
+            .category-icon {
+                width: 100% !important;
+                max-width: none !important;
+                margin: 0.5rem 0 !important;
+            }
+
+            #contact-section {
+                margin: 1.5rem 1rem !important;
+            }
+
+            .social-icon {
+                padding: 6px !important;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 9px;
+            }
+
+            .header h1 {
+                font-size: 1.2rem !important;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .nav-links a {
+                font-size: 0.6rem;
+            }
+
+            .header img {
+                width: 120px !important;
+                height: 120px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="background: rgba(29, 29, 29, 0.434); padding: 3rem 1.5rem; position: relative;">
+        <div class="nav" style="display: flex; justify-content: space-between; align-items: center; position: absolute; top: 1.5rem; left: 1.5rem; right: 1.5rem;">
+            <h3 style="color: white; margin: 0;"> </h3>
+            <div class="nav-links">
+                <!-- <a href="#home" style="font-size: 0.8rem;">Home</a> -->
+                <a href="Skills.html" style="font-size: 0.8rem;">Skills</a>
+                <a href="UpdatedCv.pdf" target="_blank" style="font-size: 0.8rem;">Resume</a>
+                <a href="#contact-section" style="font-size: 0.8rem;">Contact</a>
+            </div>
+        </div>
+        <img src="ProfilePic.jpg" alt="Profile Photo" style="width: 200px; height: 200px; border-radius: 50%; position: absolute; left: 8rem; top: 50%; transform: translateY(-50%); border: 3px solid white;">
+        <div style="max-width: 800px; margin-left: auto; color: white; text-align: right;">
+            <h1 style="font-size: 2rem; margin-bottom: 0.8rem; animation: slideIn 1.5s ease-out;">GNANAMOORTHI PV</h1>
+            <div class="flip-container" style="font-size: 1.2rem; margin-bottom: 1.2rem; perspective: 1000px; height: 25px; animation: slideIn 1.5s ease-out;">
+                <div class="flipper" style="position: relative; transform-style: preserve-3d; height: 100%;">
+                    <div class="flip-item" style="position: absolute; width: 100%; height: 100%; transform-origin: center; animation: flipIn 9s cubic-bezier(0.4, 0.0, 0.2, 1) infinite; backface-visibility: hidden;">
+                        <h2 style="margin: 0; font-size: 1.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); filter: blur(0.2px); transform: translateZ(20px);">GAME DEVELOPER</h2>
+                    </div>
+                    <div class="flip-item" style="position: absolute; width: 100%; height: 100%; transform-origin: center; animation: flipIn 9s cubic-bezier(0.4, 0.0, 0.2, 1) infinite -3s; backface-visibility: hidden;">
+                        <h2 style="margin: 0; font-size: 1.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); filter: blur(0.2px); transform: translateZ(20px);">GAME PROGRAMMER</h2>
+                    </div>
+                    <div class="flip-item" style="position: absolute; width: 100%; height: 100%; transform-origin: center; animation: flipIn 9s cubic-bezier(0.4, 0.0, 0.2, 1) infinite -6s; backface-visibility: hidden;">
+                        <h2 style="margin: 0; font-size: 1.2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); filter: blur(0.2px); transform: translateZ(20px);">3D ARTIST</h2>
+                    </div>
+                </div>
+            </div>
+            <style>
+                @keyframes flipIn {
+                    0%, 25% {
+                        transform: rotateX(0deg);
+                        opacity: 1;
+                    }
+                    33%, 92% {
+                        transform: rotateX(180deg);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: rotateX(360deg);
+                        opacity: 1;
+                    }
+                }
+                @keyframes slideIn {
+                    0% {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            </style>
+            <p id="typewriter" style="line-height: 1.4; margin-bottom: 0.8rem; min-height: 4em; animation: slideIn 1.5s ease-out;"></p>
+            <script>
+                const text = "Hello! I'm Gnanamoorthi PV, a passionate student pursuing B.Tech in Artificial Intelligence and Data Science at St. Joseph's Institute of Technology, OMR, Chennai. I'm deeply passionate about game development. Welcome to my portfolio!";
+                const typewriter = document.getElementById('typewriter');
+                typewriter.textContent = text;
+            </script>
+            <a href="mailto:gnanampv4@gmail.com" style="color: white; text-decoration: none; animation: slideIn 1.5s ease-out;">gnanampv4@gmail.com</a>
+            <br>
+            <span style="color: white; animation: slideIn 1.5s ease-out;">Ph: +91 9626448246</span>
+        </div>
+    </div>
+
+    <div class="about-section" style="text-align: center; padding: 1rem; background-color: rgba(255, 255, 255, 0.633); margin: 1.5rem auto; max-width: 1000px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);">
+        <h2 style="font-size: 1.4rem; margin-bottom: 0.8rem; color: #333;">About Me</h2>
+        <ul style="font-size: 0.85rem; line-height: 1.6; color: #373737; text-align: justify; padding: 0 1.5rem;">
+            <li style="margin-bottom: 12px;">I’m an Associate Game Developer passionate about creating engaging and immersive gaming experiences. I currently work as a trainee at Emergio Games Pvt Ltd, 
+            where I’ve gained hands-on industry experience and developed multiple game projects.</li>
+
+            <li>I’m especially passionate about VR game development and 
+            excited to build immersive virtual reality experiences in the near future.</li>
+        </ul>
+    </div>
+
+    <div class="projects-section" style="text-align: center; padding: 1.5rem;">
+        <h2 style="font-size: 1.4rem; margin-bottom: 1.5rem; color: white;">My Work</h2>
+        <div class="project-categories" style="display: flex; justify-content: center; gap: 2rem;">
+            
+            <!-- <a href="BlenderPage.html" style="text-decoration: none;">
+                <div class="category-icon" style="background-color: rgba(255, 255, 255, 0.9); padding: 1.2rem; border-radius: 15px; transition: transform 0.3s ease; margin: 0.8rem;">
+                    <img src="blender Logo.jpg" alt="Blender Projects" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+                    <h3 style="color: #333; margin-top: 0.8rem; font-size: 1rem;">Blender Projects</h3>
+                </div>
+            </a> -->
+
+            <a href="UnityPage.html" style="text-decoration: none;">
+                <div class="category-icon" style="background-color: rgba(255, 255, 255, 0.9); padding: 1.2rem; border-radius: 15px; transition: transform 0.3s ease; margin: 0.8rem;">
+                    <img src="Unity Logo 3d.png" alt="Unity Projects" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+                    <h3 style="color: #333; margin-top: 0.8rem; font-size: 1rem;">Unity Projects</h3>
+                </div>
+            </a>
+
+            <!-- <a href="VR Page.html" style="text-decoration: none;">
+                <div class="category-icon" style="background-color: rgba(255, 255, 255, 0.9); padding: 1.2rem; border-radius: 15px; transition: transform 0.3s ease; margin: 0.8rem;">
+                    <img src="VR Logo.jpg" alt="VR Projects" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+                    <h3 style="color: #333; margin-top: 0.8rem; font-size: 1rem;">VR Projects</h3>
+                </div>
+            </a> -->
+        </div>
+
+        <style>
+            .category-icon:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+            
+            @media (max-width: 768px) {
+                .project-categories {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1.5rem;
+                }
+                
+                .category-icon {
+                    width: 80%;
+                    max-width: 200px;
+                }
+            }
+        </style>
+    </div>
+
+    <footer id="contact-section" style="margin: 1.5rem 5cm; font-size: 0.9rem;">
+        <hr style="border: 1px solid rgba(255, 255, 255, 0.3); margin: 1.5rem 0;">
+        <h2 style="text-align: center; color: white; margin-bottom: 1rem; font-family: 'Press Start 2P', cursive; font-size: 1.2rem;">Contact</h2>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <div class="social-icon github" style="background-color: rgba(255, 255, 255, 0.9); padding: 8px; margin: 4px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: inline-block;">
+                <a href="https://github.com/Pvgnanamoorthi" target="_blank"><i class="fab fa-github" style="color: #171515;"></i></a>
+            </div>
+            <div class="social-icon linkedin" style="background-color: rgba(255, 255, 255, 0.9); padding: 8px; margin: 4px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: inline-block;">
+                <a href="https://www.linkedin.com/in/gnanamoorthipv/" target="_blank"><i class="fab fa-linkedin" style="color: #0077b5;"></i></a>
+            </div>
+            <!-- <div class="social-icon twitter" style="background-color: rgba(255, 255, 255, 0.9); padding: 8px; margin: 4px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: inline-block;">
+                <a href="https://x.com/GNANAMOORTHIPV" target="_blank"><i class="fab fa-twitter" style="color: #1DA1F2;"></i></a>
+            </div> -->
+            <div class="social-icon instagram" style="background-color: rgba(255, 255, 255, 0.9); padding: 8px; margin: 4px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: inline-block;">
+                <a href="https://www.instagram.com/__gm.x66_/" target="_blank"><i class="fab fa-instagram" style="color: #E1306C;"></i></a>
+            </div>
+        </div>
+        <p style="text-align: center; color: white; font-size: 0.6rem; margin-top: 2rem;">© 2025 Gnanamoorthi PV. All rights reserved.</p>
+    </footer>
+</body>
+</html>

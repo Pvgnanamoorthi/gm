@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #eee;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(76, 175, 80, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(33, 150, 243, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #4CAF50;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: rgba(76, 175, 80, 0.2);
+            transform: translateX(-4px);
+            box-shadow: 0 4px 20px rgba(76, 175, 80, 0.2);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(76, 175, 80, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.25), rgba(76, 175, 80, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #4CAF50;
+        }
+
+        .category-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.25s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(76, 175, 80, 0.12);
+            border-color: rgba(76, 175, 80, 0.25);
+            transform: scale(1.02);
+        }
+
+        .skill-item i {
+            font-size: 1.1rem;
+            color: #4CAF50;
+            width: 22px;
+            text-align: center;
+        }
+
+        .skill-item span {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Progress bar variant - optional use */
+        .skill-with-level {
+            margin-bottom: 16px;
+        }
+
+        .skill-with-level:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .skill-label-row span {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .skill-level {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        @media (max-width: 600px) {
+            .page-header h1 {
+                font-size: 1.9rem;
+            }
+            .skill-category {
+                padding: 20px;
+            }
+            .skill-list {
+                gap: 10px;
+            }
+            .skill-item {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>My Skills</h1>
+            <p>Tools and technologies I work with</p>
+        </header>
+
+        <div class="skills-grid">
+            <!-- Game Development -->
+            <section class="skill-category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-gamepad"></i></div>
+                    <h2>Game Development</h2>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item"><i class="fas fa-cube"></i><span>Unity</span></div>
+                    <div class="skill-item"><i class="fas fa-code"></i><span>C#</span></div>
+                    <div class="skill-item"><i class="fas fa-mobile-alt"></i><span>Mobile Games</span></div>
+                    <div class="skill-item"><i class="fas fa-puzzle-piece"></i><span>Game Design</span></div>
+                </div>
+            </section>
+
+            <!-- 3D & Art -->
+            <section class="skill-category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-cubes"></i></div>
+                    <h2>3D & Visual Art (Beginner)</h2>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item"><i class="fas fa-cube"></i><span>Blender</span></div>
+                    <div class="skill-item"><i class="fas fa-palette"></i><span>3D Modeling</span></div>
+                    <div class="skill-item"><i class="fas fa-paint-brush"></i><span>Texturing</span></div>
+                    <div class="skill-item"><i class="fas fa-image"></i><span>Asset Creation</span></div>
+                </div>
+            </section>
+
+            <!-- Programming -->
+            <section class="skill-category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h2>Programming</h2>
+                </div>
+                <div class="skill-list">
+                    <div class="skill-item"><i class="fas fa-database"></i><span>C#</span></div>
+                    <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                    <div class="skill-item"><i class="fab fa-js"></i><span>Python</span></div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
